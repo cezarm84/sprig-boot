@@ -1,6 +1,6 @@
 Öppna webbläsaren:
 Gå till
-http://localhost:8080 i din webbläsare
+http://localhost:8080 i webbläsare
 
 Användning:
 Skapa en ny kanal
