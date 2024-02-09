@@ -34,11 +34,11 @@ Visa alla meddelanden i kanal
 Gå till http://localhost:8080/channels/{id}/messages.
 Ersätt {id} med den faktiska ID:et för kanalen.
 _______________________
-Uppdatera ett meddelandes innehåll
-Använd en PATCH-begäran till
-http://localhost:8080/channels/messages/{id}.
-Ersätt {id} med den faktiska ID:et för meddelandet.
-
+Uppdatera ett meddelandes innehåll fixat!!!
+Använd en PATCH mappig
+{
+"newText": "New Channel text"
+}
 __________________________________________
 Ta bort ett meddelande
 Använd en DELETE-begäran till http://localhost:8080/channels/messages/{id}.
