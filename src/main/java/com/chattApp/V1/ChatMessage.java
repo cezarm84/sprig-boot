@@ -14,15 +14,6 @@ public class ChatMessage {
     @JoinColumn(name = "channel_id", nullable = false)
     private Channel channel;
 
-    public ChatMessage(String text, Channel channel) {
-        this.text = text;
-        this.channel = channel;
-    }
-
-    public ChatMessage() {
-
-    }
-
     public Long getId() {
         return id;
     }
@@ -30,6 +21,7 @@ public class ChatMessage {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getText() {
         return text;
@@ -46,4 +38,6 @@ public class ChatMessage {
     public void setChannel(Channel channel) {
         this.channel = channel;
     }
+
+
 }

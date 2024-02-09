@@ -1,0 +1,7 @@
+###
+PATCH http://localhost:8080/channels/1
+Content-Type: application/json
+
+<> 2024-02-08T222926.400.json
+
+###

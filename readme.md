@@ -15,7 +15,11 @@ Visa en specifik kanal
 Gå till http://localhost:8080/channels/{id}.
 Ersätt {id} med den faktiska ID:et för kanalen du vill visa.
 ___________________________________________
-Uppdatera en kanals titel
+Uppdatera en kanals titel fiXat!!
+använd:
+{
+"newTitle": "New Channel Title"
+}
 OBS!!!!( jag har fortfarande problem med detta)
 Använd en PATCH-brequest till http://localhost:8080/channels/{id}.
 Ersätt {id} med den faktiska ID:et för kanalen.

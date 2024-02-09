@@ -15,14 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("/channels")
 public class ChannelController {
     @Autowired
-    private ChannelService channelService;
+    private  ChannelService channelService;
 
 
-    // Hämta kanaler
-    @GetMapping("/")
-    public List<Channel> getAllChannels() {
-        return channelService.getAllChannels();
-    }
 
     // Skapa kanal
     @PostMapping("/")
@@ -31,13 +26,23 @@ public class ChannelController {
     }
 
 
+    // Hämta kanaler
+    @GetMapping("/")
+    public List<Channel> getAllChannels() {
+        return channelService.getAllChannels();
+    }
+
+
+
     // Ta bort kanal
     @DeleteMapping("/{id}")
     public void deleteChannel(@PathVariable Long id) {
         channelService.deleteChannel(id);
     }
+
+
     //channels/id
-    @GetMapping("/{id}")
+  @GetMapping("/{id}")
     public ResponseEntity<?> getChannelById(@PathVariable Long id) {
         try {
             Channel channel = channelService.getChannelById(id);
@@ -49,9 +54,9 @@ public class ChannelController {
                         .body("Channel not found with ID: " + id);
             }
         } catch (Exception e) {
-           // denna koden med hjälp  av ChatGPT hotfix
+           // denna del av koden med hjälp  av ChatGPT hotfix
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error fetching channel by ID: " + id);
+                    .body("No channel by ID: " + id);
         }
     }
 
@@ -59,7 +64,7 @@ public class ChannelController {
     // Uppdatera titeln
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateChannelTitle(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
-        String newTitle = requestBody.get("newTitle");
+        String newTitle = requestBody.get("title");
 
         try {
             Channel updatedChannel = channelService.updateChannelTitle(id, newTitle);
@@ -70,22 +75,23 @@ public class ChannelController {
     }
 
     // Skapa meddelande
-    @PutMapping("/channel/{id}/messages")
-    public ChatMessage createMessage(@PathVariable Long id, @RequestBody Message message) {
-        return channelService.createMessage(id, (ChatMessage) message);
+    @PutMapping("/{id}/messages")
+    public ChatMessage createMessage(@PathVariable Long id, @RequestBody ChatMessage chatMessage) {
+        return channelService.createMessage(id, chatMessage);
     }
 
-    // Hämta alla meddelanden
+    // Hämta meddelanden
     @GetMapping("/{id}/messages")
     public List<ChatMessage> getAllMessagesInChannel(@PathVariable Long id) {
         return channelService.getAllMessagesInChannel(id);
     }
 
-    // Uppdatera innehållet  meddelande
-    @PatchMapping("/messages/{id}")
-    public ResponseEntity<?> updateMessageContent(@PathVariable Long id, @RequestParam String newContent) {
+    // Uppdatera text  meddelande
+    @PatchMapping("{id}/messages")
+    public ResponseEntity<?> updateMessageContent(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
+        String newText = requestBody.get("newText");
         try {
-            ChatMessage updatedMessage = channelService.updateMessageContent(id, newContent);
+            ChatMessage updatedMessage = channelService.updateMessageContent(id, newText);
             return ResponseEntity.ok(updatedMessage);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Msg not found with ID: " + id);

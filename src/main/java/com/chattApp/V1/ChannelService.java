@@ -1,7 +1,6 @@
 package com.chattApp.V1;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +34,6 @@ public class ChannelService {
     public Channel updateChannelTitle(Long channelId, String newTitle) {
         Channel channel = repository.findById(channelId)
                 .orElseThrow(() -> new EntityNotFoundException("Channel not found"));
-
         channel.setTitle(newTitle);
         return repository.save(channel);
     }
@@ -49,18 +47,18 @@ public class ChannelService {
         return messageRepository.save(chatMessage);
     }
 
-    // Hämta alla meddelanden i en kanal
+    // Hämta alla meddelanden i  kanal
     public List<ChatMessage> getAllMessagesInChannel(Long channelId) {
         return messageRepository.findByChannelId(channelId);
     }
 
-    // Uppdatera innehållet i ett meddelande
+    // Uppdatera text meddelande
     public ChatMessage updateMessageContent(Long messageId, String newContent) {
-        ChatMessage message = messageRepository.findById(messageId)
+        ChatMessage chatMessage = messageRepository.findById(messageId)
                 .orElseThrow(() -> new EntityNotFoundException("Message not found"));
 
-        message.setText(newContent);
-        return messageRepository.save(message);
+        chatMessage.setText(newContent);
+        return messageRepository.save(chatMessage);
     }
 
     // Ta bort meddelande
