@@ -1,4 +1,4 @@
-bättre kode i master branchen gärna kolla 
+bättre kod med hotfix i master branchen gärna kolla 
 
 Öppna webbläsaren:
 Gå till
